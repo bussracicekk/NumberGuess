@@ -232,7 +232,7 @@ class Window extends JFrame implements MouseListener, MouseMotionListener {
 		super.addMouseMotionListener(this);
 		super.setVisible(true);
 		
-		ExitButton = buttons.size()+1;
+		ExitButton = buttons.size()+1;//This button is used for exit from the game
 		buttons.add(new Button(this.WIDTH - 36 - 4, 4, 40, 25).setText("EXIT").setID(ExitButton).setColor(Color.RED, Color.BLACK).setOnClickListener(OnClick));
 		LineButton = buttons.size()+1;
 		buttons.add(new Button(this.WIDTH - 60 - 5, 4, 25, 25).setText("-").setID(LineButton).setColor(Color.GRAY, Color.BLACK).setOnClickListener(OnClick));
