@@ -196,7 +196,7 @@ class Menu extends bind {
 	
 	@Override
 	public void clickOnMouse(int action, int mouse_x, int mouse_y) {
-		if(!visible) {
+		if(!v) {
 			return;
 		}
 		for (Button button : buttonsmenu) {
