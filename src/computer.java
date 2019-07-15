@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class computer {
 	
-	private ArrayList<String> pos = new ArrayList<String>();
+	private ArrayList<String> pos = new ArrayList<String>();//list of combinations 4 digits numbers
 	public int digits, num;
 	private String number = "";
 	public static Random r = new Random();
@@ -20,7 +20,7 @@ public class computer {
 		
 	}
 	
-	private void allCom() {
+	private void allCom() {//find the 4 digits numbers combinations
 		for (int i = 0; i < this.num; i++) {
 			String string = "";
 			string += (i+1);
@@ -47,7 +47,7 @@ public class computer {
 			}
 		}
 	}
-	public String createNumber() {
+	public String createNumber() {//create random numbers
 		r = new Random();
 		number = "";
 		int randomDigit = r.nextInt(10);
@@ -60,7 +60,7 @@ public class computer {
 		return number;
 	}
 
-	public String hintcomputer(String guess) {
+	public String hintcomputer(String guess) {//create hint for user
 		int sameValues = 0; // sameValues: good digits well placed
 		int diffValues = 0; // diffValues: good digits bad placed
 
@@ -108,10 +108,10 @@ class ComPad extends bind {
 	public void computerGuess(String guess) {
 		if(guess.equals("OK")) {
 			alert.onAlert("OK");
-			setMessage("Your number : '" + comguess + "'");
+			setMessage("Your number : '" + comguess + "'");//when computer find the user's number
 		}else {
 			comguess = guess;
-			setMessage("MY GUESS : '" + comguess + "' ?");
+			setMessage("MY GUESS : '" + comguess + "' ?");//guess of comouter
 		}
 	}
 	public void setMessage(String message) {
@@ -150,9 +150,8 @@ class ComPad extends bind {
 }
 class Menu extends bind {
 	
-	private int StartButton = 0, paddingmenu = 20;
-	
-	private ArrayList<Button> buttonsmenu = new ArrayList<Button>();
+	private int StartButton = 0 /*Starting button of game*/, paddingmenu = 20;
+	private ArrayList<Button> buttonsmenu = new ArrayList<Button>();//buttons list of menu
 	private Button.OnClickListener buttonOnClickListenermenu;
 	
 	public Menu(int x, int y) {
@@ -165,14 +164,14 @@ class Menu extends bind {
 		buttonOnClickListenermenu = new Button.OnClickListener() {
 			@Override
 			public void onClick(int id) {
-				if(id == StartButton) {
+				if(id == StartButton) {//	When click the start button,then user start the game
 					alert.onAlert("user");
 				}
 			}
 		};
 	}
 	
-	private void initmenu() {
+	private void initmenu() {//location of start button
 		StartButton = buttonsmenu.size()+1;
 		buttonsmenu.add(new Button(super.i + (250+paddingmenu), super.j - (65 + paddingmenu), 150, 80).setText("START").setID(StartButton).setOnClickListener(buttonOnClickListenermenu));
 	}
