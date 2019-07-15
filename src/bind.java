@@ -205,15 +205,13 @@ class Window extends JFrame implements MouseListener, MouseMotionListener {
 	
 	private static final long serialVersionUID = 1L;
 	private Canvas canvas;
-	private String title = "";
 	private int WIDTH = 800, HEIGHT = 600, ExitButton = 0, LineButton = 0;
 	private ArrayList<InterFace> interfs = new ArrayList<InterFace>();
 	private ArrayList<Button> buttons = new ArrayList<Button>();
 	private Canvas.RenderCallback renderCallback;
 	private Button.OnClickListener OnClick;
 
-	public Window(String title, int WIDTH, int HEIGHT) {
-		this.title = title; // set title of window
+	public Window(int WIDTH, int HEIGHT) {
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
 		
@@ -223,7 +221,6 @@ class Window extends JFrame implements MouseListener, MouseMotionListener {
 	
 	private void initwindow() {
 		super.setContentPane(canvas);
-		super.setTitle(this.title);
 		super.setUndecorated(true);
 		pack();
 		super.setLocationRelativeTo(null);
