@@ -105,7 +105,7 @@ class Button extends InterFace{
 	
 	@Override
 	public void clickOnMouse(int action, int mouse_x, int mouse_y) {
-		if(!visible) {
+		if(!v) {
 			return;
 		}
 		super.a = false;
