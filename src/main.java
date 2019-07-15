@@ -20,7 +20,7 @@ public class main {
 	private static JTextPane textPane;
 	
 	public static void main(String[] args) {
-		JFrame frame = new JFrame("Application on CS-TECH by Busra Cicek");
+		JFrame frame = new JFrame("CS-TECH");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container contentPane = frame.getContentPane();
 		JPanel buttonsPanel = new JPanel();
