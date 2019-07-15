@@ -41,11 +41,11 @@ public class main {
 				String userGuessResult = computer.hintcomputer(output); 
 				guess.addToHistory(output + " [" + userGuessResult + "]");
 				if(userGuessResult.equals("+4-0")) {
-					comPad.setMessage(" CONGRUTILATIONS, YOU WON !!!");
+					comPad.setMessage(" CONGRUTILATIONS, You Won The Game");
 					user.setVisibility(InterFace.unvisible);
 					return;
 				}
-				comPad.computerGuess(com.guess()); // take ai's guess about user's number and display it on screen
+				comPad.computerGuess(com.guess());
 				hint.setVisibility(InterFace.visible);
 				user.setVisibility(InterFace.unvisible);
 			}
@@ -59,7 +59,7 @@ public class main {
 			@Override
 			public void onAlert(String output) {
 				if(output.equals("40")) {
-					comPad.setMessage("Computer WON !!!");
+					comPad.setMessage("Computer Won The Game !!!");
 					hint.setVisibility(InterFace.unvisible);
 				}else {
 					comPad.setMessage("LET'S GUESS MY NUMBER : ");
