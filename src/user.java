@@ -4,8 +4,11 @@ import java.awt.TextArea;
 import java.awt.TextField;
 import java.util.ArrayList;
 public class user extends bind {
-	private int deleteButton = 0, OkButton = 0, button_count = 0, padding = 10;
-	private ArrayList<Button> buttons= new ArrayList<Button>();
+	/*This program is used the button for every number from 0 to 9 and when a number is used, it number is deleted
+	 * thus every number can use just once every time.
+	 */
+	private int deleteButton = 0/*delete button is used, when a user want ot delete the number*/, OkButton = 0/* Ok button is used for entering the user's guess*/, button_count = 0, padding = 10;
+	private ArrayList<Button> buttons= new ArrayList<Button>();//buttons list of the user
 	private Button.OnClickListener buttonOnClickListener;
 	private String current_text = "";
 	TextArea output=new TextArea(30,35);
@@ -55,7 +58,7 @@ public class user extends bind {
 	}
 	
 	
-	private void initUIuser() {
+	private void initUIuser() {//locations of the buttons
 		for (int i = 0; i <= button_count; i++) {
 			buttons.add(new Button(super.i + (50+padding)*i, super.j, 50, 50).setText(i+"").setID(i).setOnClickListener(buttonOnClickListener));
 		}
@@ -71,7 +74,7 @@ public class user extends bind {
 		return deleted_id;
 	}
 
-	public void reset(boolean vis) {
+	public void reset(boolean vis) {//reset method for datas
 		setVisibility(vis);
 		for (Button button : buttons) {
 			button.setVisibility(InterFace.visible);
@@ -120,6 +123,7 @@ public class user extends bind {
 	}
 	
 }
+/*With UserHint class user can give a hint to computer for it's guess*/
 class UserHint extends bind {
 	
 	private int increasebutton = 0, decreasebutton = 0,iplus = 0, dplus = 0, iminus = 0, dminus = 0, ok = 0;
@@ -224,6 +228,7 @@ class UserHint extends bind {
 	}
 
 }
+/*With PreviousGuess class user can see his previous guess*/
 class PreviousGuess extends bind {
 
     private int BACK_BUTTON_ID = 0;
