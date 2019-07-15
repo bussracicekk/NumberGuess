@@ -206,13 +206,11 @@ class Window extends JFrame implements MouseListener, MouseMotionListener {
 	private static final long serialVersionUID = 1L;
 	private Canvas canvas;
 	private String title = "";
-	private int WIDTH = 800;
-	private int HEIGHT = 600;
-	private ArrayList<InterFace> drawables;
+	private int WIDTH = 800, HEIGHT = 600, ExitButton = 0, LineButton = 0;
+	private ArrayList<InterFace> interfs = new ArrayList<InterFace>();
+	private ArrayList<Button> buttons = new ArrayList<Button>();
 	private Canvas.RenderCallback renderCallback;
-	private Button.OnClickListener buttonOnClickListener;
-	private ArrayList<Button> buttons;
-	private int ExitButton = 0, LineButton = 0;
+	private Button.OnClickListener OnClick;
 
 	public Window(String title, int WIDTH, int HEIGHT) {
 		this.title = title; // set title of window
@@ -223,38 +221,24 @@ class Window extends JFrame implements MouseListener, MouseMotionListener {
 		initwindow();
 	}
 	
-	public Window(int WIDTH, int HEIGHT) {
-		this.WIDTH = WIDTH;
-		this.HEIGHT = HEIGHT;
-		
-		initToolsWindow();
-		initwindow();
-	}
-	
-	public Window() {
-		initToolsWindow();
-		initwindow();
-	}
-	
 	private void initwindow() {
-		super.setContentPane(canvas); // add custom canvas to window
+		super.setContentPane(canvas);
 		super.setTitle(this.title);
 		super.setUndecorated(true);
 		pack();
-		super.setLocationRelativeTo(null); // center to screen
+		super.setLocationRelativeTo(null);
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		super.addMouseListener(this); // add mouse event listener
+		super.addMouseListener(this);
 		super.addMouseMotionListener(this);
 		super.setVisible(true);
 		
 		ExitButton = buttons.size()+1;
-		buttons.add(new Button(this.WIDTH - 36 - 4, 4, 40, 25).setText("EXIT").setID(ExitButton).setColor(Color.RED, Color.BLACK).setOnClickListener(buttonOnClickListener));
+		buttons.add(new Button(this.WIDTH - 36 - 4, 4, 40, 25).setText("EXIT").setID(ExitButton).setColor(Color.RED, Color.BLACK).setOnClickListener(OnClick));
 		LineButton = buttons.size()+1;
-		buttons.add(new Button(this.WIDTH - 60 - 5, 4, 25, 25).setText("-").setID(LineButton).setColor(Color.GRAY, Color.BLACK).setOnClickListener(buttonOnClickListener));
+		buttons.add(new Button(this.WIDTH - 60 - 5, 4, 25, 25).setText("-").setID(LineButton).setColor(Color.GRAY, Color.BLACK).setOnClickListener(OnClick));
 	}
-	private void initToolsWindow() {
-		buttons = new ArrayList<Button>();
-		buttonOnClickListener = new Button.OnClickListener() {
+	private void initToolsWindow() {	
+		OnClick = new Button.OnClickListener() {
 			
 			@Override
 			public void onClick(int id) {
@@ -266,8 +250,6 @@ class Window extends JFrame implements MouseListener, MouseMotionListener {
 				
 			}
 		};
-		
-		drawables = new ArrayList<InterFace>();
 		renderCallback = new Canvas.RenderCallback() {
 			
 			@Override
@@ -279,7 +261,6 @@ class Window extends JFrame implements MouseListener, MouseMotionListener {
 		canvas = new Canvas(this.WIDTH, this.HEIGHT);
 		canvas.setRenderCallback(renderCallback);
 		
-		// This is a fps measurement thread, every second it resets to 0
 		new Thread(new Runnable() {
 			
 			@Override
@@ -296,26 +277,23 @@ class Window extends JFrame implements MouseListener, MouseMotionListener {
 		}).start();
 	}
 	
-	public void addDrawable(InterFace drawable) {
-		drawables.add(drawable);
+	public void addInterFace(InterFace interf) {
+		interfs.add(interf);
 	}
 	
 	private void renderGraphics(Graphics g) {
-		/*
-		g.drawString("BUSRA CICEK", 700, this.HEIGHT - 10);*/
-		
 		for (Button button : buttons) {
 			button.rendergraph(g);
 		}
 		
-        for (InterFace drawable : drawables) {
-			drawable.rendergraph(g);
+        for (InterFace interf : interfs) {
+			interf.rendergraph(g);
 		}
 	}
 	
 	private void update(int action, int mouse_x, int mouse_y) {
-		for (InterFace drawable : drawables) {
-			drawable.clickOnMouse(action, mouse_x, mouse_y);
+		for (InterFace interf : interfs) {
+			interf.clickOnMouse(action, mouse_x, mouse_y);
 		}
 		
 		for (Button button : buttons) {
