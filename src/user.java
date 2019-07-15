@@ -111,7 +111,7 @@ public class user extends bind {
 	
 	@Override
 	public void clickOnMouse(int action, int mouse_x, int mouse_y) {
-		if(!visible) {
+		if(!v) {
 			return;
 		}
 		for (Button button : buttons) {
@@ -215,7 +215,7 @@ class UserHint extends bind {
 	
 	@Override
 	public void clickOnMouse(int action, int mouse_x, int mouse_y) {
-		if(!visible) {
+		if(!v) {
 			return;
 		}
 		for (Button button : buttonshint) {
@@ -280,7 +280,7 @@ class PreviousGuess extends bind {
 	
 	@Override
 	public void clickOnMouse(int action, int mouse_x, int mouse_y) {
-		if(!visible) {
+		if(!v) {
 			return;
 		}
 		for (Button button : buttons) {
@@ -327,7 +327,7 @@ class Guesses extends bind {
 	
 	@Override
 	public void clickOnMouse(int action, int mouse_x, int mouse_y) {
-		if(!visible) {
+		if(!v) {
 			return;
 		}
 		for (Button button : buttons) {
